@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThrottlingTrollSampleAspNetFunction", "ThrottlingTrollSampleAspNetFunction\ThrottlingTrollSampleAspNetFunction.csproj", "{09697A14-30FC-461E-9242-DCACEC5E37A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThrottlingTrollSampleDotNet6InProcDurableFunction", "ThrottlingTrollSampleDotNet6InProcDurableFunction\ThrottlingTrollSampleDotNet6InProcDurableFunction.csproj", "{07BC53BF-5043-45F2-B7D7-05DD7A9FC754}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThrottlingTrollSampleFunction", "ThrottlingTrollSampleFunction\ThrottlingTrollSampleFunction.csproj", "{83A08F57-DB02-4B71-8AF0-63341013A1D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09697A14-30FC-461E-9242-DCACEC5E37A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09697A14-30FC-461E-9242-DCACEC5E37A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09697A14-30FC-461E-9242-DCACEC5E37A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09697A14-30FC-461E-9242-DCACEC5E37A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07BC53BF-5043-45F2-B7D7-05DD7A9FC754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BC53BF-5043-45F2-B7D7-05DD7A9FC754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BC53BF-5043-45F2-B7D7-05DD7A9FC754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BC53BF-5043-45F2-B7D7-05DD7A9FC754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83A08F57-DB02-4B71-8AF0-63341013A1D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A08F57-DB02-4B71-8AF0-63341013A1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A08F57-DB02-4B71-8AF0-63341013A1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A08F57-DB02-4B71-8AF0-63341013A1D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB15AE67-F9A4-4E7B-8F8D-48F300E21BF5}
+	EndGlobalSection
+EndGlobal
