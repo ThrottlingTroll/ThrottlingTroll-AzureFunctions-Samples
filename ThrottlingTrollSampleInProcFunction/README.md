@@ -1,4 +1,4 @@
-# ThrottlingTrollSampleFunction
+# ThrottlingTrollSampleInProcFunction
 
 This Azure Functions (.NET InProc) project demonstrates all the features of [ThrottlingTroll.AzureFunctions](https://www.nuget.org/packages/ThrottlingTroll.AzureFunctions).
 
