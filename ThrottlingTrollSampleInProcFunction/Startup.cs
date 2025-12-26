@@ -149,7 +149,8 @@ namespace ThrottlingTrollSampleInProcFunction.Startup
                             IdentityIdExtractor = request =>
                             {
                                 // Identifying clients by their api-key
-                                return ((InProcHttpRequestProxy)request).Request.Query["api-key"];
+                                request.Query.TryGetValue("api-key", out var key);
+                                return key;
                             }
                         },
 
@@ -183,7 +184,8 @@ namespace ThrottlingTrollSampleInProcFunction.Startup
                             IdentityIdExtractor = request =>
                             {
                                 // Identifying clients by their id
-                                return ((InProcHttpRequestProxy)request).Request.Query["id"];
+                                request.Query.TryGetValue("id", out var id);
+                                return id;
                             }
                         },
 
@@ -203,7 +205,8 @@ namespace ThrottlingTrollSampleInProcFunction.Startup
                             IdentityIdExtractor = request =>
                             {
                                 // Identifying counters by their id
-                                return ((InProcHttpRequestProxy)request).Request.Query["id"];
+                                request.Query.TryGetValue("id", out var id);
+                                return id;
                             }
                         },
 
@@ -222,7 +225,8 @@ namespace ThrottlingTrollSampleInProcFunction.Startup
                             // Using "id" query string param to identify requests
                             IdentityIdExtractor = request =>
                             {
-                                return ((InProcHttpRequestProxy)request).Request.Query["id"];
+                                request.Query.TryGetValue("id", out var id);
+                                return id;
                             },
 
                             // Returning 409 Conflict for duplicate requests

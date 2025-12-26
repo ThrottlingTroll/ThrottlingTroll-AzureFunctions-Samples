@@ -112,21 +112,6 @@ namespace ThrottlingTrollSampleInProcFunction
                 ctx => Task.FromResult<IActionResult>(new OkObjectResult("OK")),
                 ctx => Task.FromResult<IActionResult>(new StatusCodeResult((int)HttpStatusCode.TooManyRequests)));
 
-        public const string FixedWindow1RequestPer2SecondsResponseFabricRoute = "fixed-window-1-request-per-2-seconds-response-fabric";
-        /// <summary>
-        /// Rate limited to 1 request per a fixed window of 2 seconds.
-        /// Custom throttled response is returned, with 400 BadRequest status code and custom body.
-        /// Demonstrates how to use custom response fabrics.
-        /// </summary>
-        /// <response code="200">OK</response>
-        /// <response code="400">BadRequest</response>
-        [FunctionName(FixedWindow1RequestPer2SecondsResponseFabricRoute)]
-        public Task<IActionResult> Test6([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
-            => this._thtr.WithThrottlingTroll(
-                new InProcHttpRequestProxy(req),
-                ctx => Task.FromResult<IActionResult>(new OkObjectResult("OK")),
-                ctx => Task.FromResult<IActionResult>(new StatusCodeResult((int)HttpStatusCode.TooManyRequests)));
-
         public const string FixedWindow1RequestPer2SecondsDelayedResponseRoute = "fixed-window-1-request-per-2-seconds-delayed-response";
         /// <summary>
         /// Rate limited to 1 request per a fixed window of 2 seconds.

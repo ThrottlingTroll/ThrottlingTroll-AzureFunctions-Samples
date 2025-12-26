@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using ThrottlingTroll;
@@ -18,7 +19,9 @@ namespace ThrottlingTrollSampleInProcFunction
 
         public string Method => this.Request.Method;
 
-        public IDictionary<string, StringValues> Headers => this.Request.Headers;
+        public IReadOnlyDictionary<string, StringValues> Headers => this.Request.Headers.ToDictionary();
+
+        public IReadOnlyDictionary<string, StringValues> Query => this.Request.Query.ToDictionary();
 
         public IDictionary<object, object> RequestContextItems => this.Request.HttpContext.Items;
 
