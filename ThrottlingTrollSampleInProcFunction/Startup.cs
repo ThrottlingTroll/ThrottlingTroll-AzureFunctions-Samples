@@ -86,35 +86,6 @@ namespace ThrottlingTrollSampleInProcFunction.Startup
                         },
 
 
-                        // Demonstrates how to use custom response fabrics
-                        new ThrottlingTrollRule
-                        {
-                            UriPattern = $"/{Functions.FixedWindow1RequestPer2SecondsResponseFabricRoute}",
-                            LimitMethod = new FixedWindowRateLimitMethod
-                            {
-                                PermitLimit = 1,
-                                IntervalInSeconds = 2
-                            },
-
-                            // Custom response fabric, returns 400 BadRequest + some custom content
-                            ResponseFabric = async (checkResults, requestProxy, responseProxy, requestAborted) =>
-                            {
-                                // Getting the rule that was exceeded and with the biggest RetryAfter value
-                                var limitExceededResult = checkResults.OrderByDescending(r => r.RetryAfterInSeconds).FirstOrDefault(r => r.RequestsRemaining < 0);
-                                if (limitExceededResult == null)
-                                {
-                                    return;
-                                }
-
-                                responseProxy.StatusCode = (int)HttpStatusCode.BadRequest;
-
-                                responseProxy.SetHttpHeader("Retry-After", limitExceededResult.RetryAfterHeaderValue);
-
-                                await responseProxy.WriteAsync("Too many requests. Try again later.");
-                            }
-                        },
-
-
                         // Demonstrates how to delay the response instead of returning 429
                         new ThrottlingTrollRule
                         {
