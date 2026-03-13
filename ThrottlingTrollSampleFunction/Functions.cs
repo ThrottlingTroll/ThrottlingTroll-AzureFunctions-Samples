@@ -1,8 +1,10 @@
-using System.Net;
-using System.Text.Json;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using StackExchange.Redis;
+using System.Net;
+using System.Text.Json;
 using ThrottlingTroll;
 
 namespace ThrottlingTrollSampleFunction
@@ -287,6 +289,20 @@ namespace ThrottlingTrollSampleFunction
 
                 throw new Exception("Oops, I am broken");
             }
+        }
+
+        public const string LeakyBucket3RequestsPer10SecondsRoute = "leaky-bucket-3-requests-per-10-seconds";
+        /// <summary>
+        /// Leaky bucket, rate limited to 3 requests per 10 seconds. First request goes through, next requests are queued, excessive requests are rejected.
+        /// </summary>
+        /// <response code="200">OK</response>
+        /// <response code="429">TooManyRequests</response>
+        [Function(LeakyBucket3RequestsPer10SecondsRoute)]
+        public HttpResponseData Test15([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequestData req)
+        {
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            response.WriteString("OK");
+            return response;
         }
 
         public const string MyThrottledHttpClientName = "my-throttled-httpclient";

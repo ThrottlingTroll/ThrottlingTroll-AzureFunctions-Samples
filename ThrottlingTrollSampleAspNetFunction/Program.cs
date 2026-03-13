@@ -1,10 +1,12 @@
-using System.Net;
-using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
+using System.Net;
+using System.Text.Json;
 using ThrottlingTroll;
+using ThrottlingTroll.CounterStores.EfCore;
 using ThrottlingTroll.CounterStores.Redis;
 using ThrottlingTrollSampleAspNetFunction;
 
@@ -244,7 +246,20 @@ builder.ConfigureFunctionsWebApplication((builderContext, workerAppBuilder) => {
                         IntervalInSeconds = 10,
                         TrialIntervalInSeconds = 20
                     }
-                }
+                },
+
+
+                // Demonstrates LeakyBucket
+                new ThrottlingTrollRule
+                {
+                    UriPattern = $"/{Functions.LeakyBucket3RequestsPer10SecondsRoute}",
+
+                    LimitMethod = new LeakyBucketRateLimitMethod
+                    {
+                        PermitLimit = 3,
+                        IntervalInSeconds = 10,
+                    }
+                },
             },
         };
 

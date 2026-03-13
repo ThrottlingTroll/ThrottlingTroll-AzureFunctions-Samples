@@ -248,6 +248,18 @@ namespace ThrottlingTrollSampleAspNetFunction
             }
         }
 
+        public const string LeakyBucket3RequestsPer10SecondsRoute = "leaky-bucket-3-requests-per-10-seconds";
+        /// <summary>
+        /// Leaky bucket, rate limited to 3 requests per 10 seconds. First request goes through, next requests are queued, excessive requests are rejected.
+        /// </summary>
+        /// <response code="200">OK</response>
+        /// <response code="429">TooManyRequests</response>
+        [Function(LeakyBucket3RequestsPer10SecondsRoute)]
+        public IActionResult Test15([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
+        {
+            return new OkObjectResult("OK");
+        }
+
         public const string MyThrottledHttpClientName = "my-throttled-httpclient";
         public const string EgressFixedWindow2RequestsPer5SecondsConfiguredViaAppSettings = "egress-fixed-window-2-requests-per-5-seconds-configured-via-appsettings";
         /// <summary>

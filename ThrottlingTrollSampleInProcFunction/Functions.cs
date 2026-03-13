@@ -255,6 +255,19 @@ namespace ThrottlingTrollSampleInProcFunction
                 },
                 ctx => Task.FromResult<IActionResult>(new StatusCodeResult((int)HttpStatusCode.ServiceUnavailable)));
 
+
+        public const string LeakyBucket3RequestsPer10SecondsRoute = "leaky-bucket-3-requests-per-10-seconds";
+        /// <summary>
+        /// </summary>
+        /// <response code="200">OK</response>
+        /// <response code="409">Conflict</response>
+        [FunctionName(LeakyBucket3RequestsPer10SecondsRoute)]
+        public Task<IActionResult> Test15([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
+            => this._thtr.WithThrottlingTroll(
+                new InProcHttpRequestProxy(req),
+                ctx => Task.FromResult<IActionResult>(new OkObjectResult("OK")),
+                ctx => Task.FromResult<IActionResult>(new StatusCodeResult((int)HttpStatusCode.TooManyRequests)));
+
         public const string MyThrottledHttpClientName = "my-throttled-httpclient";
         public const string EgressFixedWindow2RequestsPer5SecondsConfiguredViaAppSettingsRoute = "egress-fixed-window-2-requests-per-5-seconds-configured-via-appsettings";
         /// <summary>
